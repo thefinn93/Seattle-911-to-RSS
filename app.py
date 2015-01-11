@@ -74,7 +74,7 @@ def atom911():
         # body += "</table>"
         body = "Level %s %s at %s, timecode %s (assigned to unit %s)" % (
             incident['level'], incident['type'], incident['location'],
-            incident['date'], incident['unit'])
+            incident['date'], incident['units'])
         feed.add(title, body, content_type='html', published=incident['date'],
                  id=incident['number'], updated=incident['date'])
     return feed.get_response()
