@@ -8,11 +8,13 @@ from bs4 import BeautifulSoup
 from flask import Flask, request
 from werkzeug.contrib.atom import AtomFeed
 
+UA = "Seattle 911 RSS feed (https://github.com/thefinn93/Seattle-911-to-RSS)"
+
 
 def checkForIncidents():
     url = "https://www2.ci.seattle.wa.us/fire/realtime911/"
     url += "getRecsForDatePub.asp?action=Today&incDate=&rad1=des"
-    raw = requests.get(url, verify=False).content
+    raw = requests.get(url, verify=False, headers={'User-Agent': UA}).content
     soup = BeautifulSoup(raw)
     rows = soup.find_all("table")[3].find_all("tr")
     incidents = []
