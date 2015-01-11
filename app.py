@@ -69,7 +69,7 @@ def atom911():
         title = "%s #%s" % (incident['type'], incident['number'])
         body = "<table>\n"
         for key in incident:
-            body += "<tr><td>%s</td><td>%s</td></tr>\n" % (key, incident[key])
+            body += "<tr><td><b>%s</b></td><td>%s</td></tr>\n" % (key, incident[key])
         body += "</table>"
         feed.add(title, body, content_type='html', published=incident['date'],
                  id=incident['number'], updated=incident['date'])
