@@ -77,7 +77,7 @@ def atom911():
             incident['level'], incident['type'], incident['location'],
             incident['date'], incident['units'])
         url = "https://www.google.com/maps/place/"
-        url += urllib.urlencode(incident['location'])
+        url += urllib.quote(incident['location'])
         feed.add(title, body, content_type='html', published=incident['date'],
                  id=incident['number'], updated=incident['date'], url=url)
     return feed.get_response()
