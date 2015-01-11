@@ -2,6 +2,7 @@
 import logging
 import requests
 import json
+import urllib
 from datetime import datetime
 from bs4 import BeautifulSoup
 from flask import Flask, request
@@ -75,8 +76,10 @@ def atom911():
         body = "Level %s %s at %s, timecode %s (assigned to %s)" % (
             incident['level'], incident['type'], incident['location'],
             incident['date'], incident['units'])
+        url = "https://www.google.com/maps/place/"
+        url += urllib.urlencode(incident['location'])
         feed.add(title, body, content_type='html', published=incident['date'],
-                 id=incident['number'], updated=incident['date'])
+                 id=incident['number'], updated=incident['date'], url=url)
     return feed.get_response()
 
 
