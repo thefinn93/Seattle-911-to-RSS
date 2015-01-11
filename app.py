@@ -67,11 +67,14 @@ def atom911():
                     url=request.url_root)
     for incident in checkForIncidents():
         title = "%s #%s" % (incident['type'], incident['number'])
-        body = "<table>\n"
-        for key in incident:
-            body += "<tr><td><b>%s</b></td><td>%s</td></tr>\n" % (key,
-                    incident[key])
-        body += "</table>"
+        # body = "<table>\n"
+        # for key in incident:
+        #     body += "<tr><td><b>%s</b></td><td>%s</td></tr>\n" % (key,
+        #             incident[key])
+        # body += "</table>"
+        body = "Level %s %s at %s, time %s" % (
+            incident['level'], incident['type'], incident['location'],
+            incident['date'])
         feed.add(title, body, content_type='html', published=incident['date'],
                  id=incident['number'], updated=incident['date'])
     return feed.get_response()
